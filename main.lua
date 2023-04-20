@@ -254,7 +254,6 @@ spawn(function()
     local playerList = {}
     for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
         table.insert(playerList, player.Name)
-        print(player.name)
     end
     playertp:Refresh(playerList, true)
     end
