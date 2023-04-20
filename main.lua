@@ -187,7 +187,7 @@ tab.teleport:AddToggle({
 	Callback = function(Value)
 		_G.annoy = Value
 		while _G.annoy and wait() do
-		    playerrr.Character.HumanoidRootPart.CFrame = game:GetService("Players")[_G.selected].Character.HumanoidRootPart.CFrame
+		    player.Character.HumanoidRootPart.CFrame = game:GetService("Players")[_G.selected].Character.HumanoidRootPart.CFrame
 		end
 	end    
 })
@@ -252,6 +252,7 @@ playertp:Refresh(playerList, true)
 spawn(function()
     while true do
     wait(5)
+    local player = game:GetService("Players").LocalPlayer -- LOCAL PLAYER		
     local playerList = {}
     for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
         table.insert(playerList, player.Name)
