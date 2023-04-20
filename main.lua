@@ -1,4 +1,3 @@
-
 -- DESTROY COLLECT SOUND
 if game:GetService("SoundService"):FindFirstChild("Collect") then
     game:GetService("SoundService").Collect:Destroy()
@@ -187,7 +186,7 @@ tab.teleport:AddToggle({
 	Callback = function(Value)
 		_G.annoy = Value
 		while _G.annoy and wait() do
-		    player.Character.HumanoidRootPart.CFrame = game:GetService("Players")[_G.selected].Character.HumanoidRootPart.CFrame
+		    playerrr.Character.HumanoidRootPart.CFrame = game:GetService("Players")[_G.selected].Character.HumanoidRootPart.CFrame
 		end
 	end    
 })
@@ -252,7 +251,6 @@ playertp:Refresh(playerList, true)
 spawn(function()
     while true do
     wait(5)
-    local player = game:GetService("Players").LocalPlayer -- LOCAL PLAYER		
     local playerList = {}
     for _, player in ipairs(game:GetService("Players"):GetPlayers()) do
         table.insert(playerList, player.Name)
@@ -262,7 +260,26 @@ spawn(function()
     end
 end)
 
-
+spawn(function()
+    while true and wait(5) do
+        local response = syn.request({
+            Url = "https://verlox.cc/api/v3/auth/user/verify",
+            Method = "POST",
+            Headers = {
+                ["Content-Type"] = "application/json",
+                ["Authorization"] = _G.token,
+                ["AppId"] = "3",    
+            },
+        })
+    
+        local data = HttpService:JSONDecode(response.Body)
+        
+        if data.code ~= 200 then
+            print('ERROR DURING VERIFICATION : ' .. data.message)
+            break
+        end
+    end
+end)
 
 
 -- INIT
